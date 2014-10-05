@@ -1,5 +1,6 @@
 activitiesApp = angular.module('activitiesApp', []);
 
+// model containing all activities
 activitiesApp.factory('activitiesModel', function() {
 	var activities = [
 		[
@@ -55,9 +56,11 @@ activitiesApp.factory('activitiesModel', function() {
 
 activitiesApp.controller('ActivitiesCtrl', ['$scope', 'activitiesModel', function ($scope, activitiesModel) {
 
+	// pulling data from activitiesModel factory 
 		$scope.allActivities = activitiesModel;
 		$scope.categories = ['All', 'Music', 'Sports', 'Outdoors', 'Workout', 'Nightlife', 'Food'];
 
+	// uses index to reference 'categories' array. Shows only if category matches array value
 		$scope.catPick = function(index) {
 			if(index === 0) {
 				$scope.query = "";
@@ -67,10 +70,28 @@ activitiesApp.controller('ActivitiesCtrl', ['$scope', 'activitiesModel', functio
 			}
 		};
 
+	// matches selectedIndex with $index to change bg-color of clicked div
 		$scope.selectedIndex = -1;
 
 		$scope.itemClicked = function($index) {
 			$scope.selectedIndex = $index;
+		};
+		
+		$scope.bubbleColor = function(category) {
+			switch (category) {
+				case 'Music':
+					return { 'background-color': '#70372E'};
+				case 'Sports':
+					return { 'background-color': '#94787A', 'color': 'black'};
+				case 'Outdoors':
+					return { 'background-color': '#5B838F'};
+				case 'Workout':
+					return { 'background-color': '#485260'};
+				case 'Nightlife':
+					return { 'background-color': '#67424A'};
+				case 'Food':
+					return { 'background-color': '#B0B8B4', 'color': 'black'};
+			}
 		};
 }]);
 
