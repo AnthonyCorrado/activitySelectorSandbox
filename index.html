@@ -14,11 +14,13 @@
 			<label> Search Activity: </label>
 			<input type="text" ng-model="query">
 
-			<div ng-repeat="item in categories" ng-click="catPick($index); itemClicked($index)" class="nav-button" ng-class="{'selected': $index == selectedIndex }"><span class="small-text"> {{ item }} </span> </div>
+			<div ng-repeat="item in categories"  ng-style="bubbleColor(item)" ng-click="catPick($index); itemClicked($index)" class="nav-button" ng-class="{'selected': $index == selectedIndex }">
+				<span class="small-text"> {{ item }} </span>
+			</div>
 		</div>
 
 		<div ng-repeat="cat in allActivities">
-			<div ng-repeat="activity in cat | filter:query" class="activity">
+			<div ng-repeat="activity in cat | filter:query" class="activity" ng-style="bubbleColor(activity.category)">
 				<span> {{ activity.name }} </span>
 			</div>
 		</div>
