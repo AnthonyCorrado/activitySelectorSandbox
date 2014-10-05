@@ -1,0 +1,28 @@
+<html>
+<head>
+	<title>Activities Sandbox</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body ng-app="activitiesApp">
+	<div ng-controller="ActivitiesCtrl">
+
+		<div class="header"></div>
+
+		<div class="search-nav">
+			<label> Search Activity: </label>
+			<input type="text" ng-model="query">
+
+			<div ng-repeat="item in categories" ng-click="catPick($index); itemClicked($index)" class="nav-button" ng-class="{'selected': $index == selectedIndex }"><span class="small-text"> {{ item }} </span> </div>
+		</div>
+
+		<div ng-repeat="cat in allActivities">
+			<div ng-repeat="activity in cat | filter:query" class="activity">
+				<span> {{ activity.name }} </span>
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>
